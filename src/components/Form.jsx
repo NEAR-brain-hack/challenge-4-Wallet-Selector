@@ -6,7 +6,7 @@ export default function Form({ onSubmit, currentUser }) {
   return (
     <form onSubmit={onSubmit}>
       <fieldset id="fieldset">
-        <p>Sign the guest book, { currentUser.accountId }!</p>
+        <p>Sign the guest book, { currentUser?.account_id }!</p>
         <p className="highlight">
           <label htmlFor="message">Message:</label>
           <input
@@ -22,7 +22,7 @@ export default function Form({ onSubmit, currentUser }) {
             autoComplete="off"
             defaultValue={'0'}
             id="donation"
-            max={Big(currentUser.balance).div(10 ** 24)}
+            max="200"
             min="0"
             step="0.01"
             type="number"
@@ -36,11 +36,3 @@ export default function Form({ onSubmit, currentUser }) {
     </form>
   );
 }
-
-Form.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  currentUser: PropTypes.shape({
-    accountId: PropTypes.string.isRequired,
-    balance: PropTypes.string.isRequired
-  })
-};
